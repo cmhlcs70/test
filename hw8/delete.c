@@ -1,31 +1,44 @@
 #define _CRT_SECURE_NO_WARNINGS
-#include<stdio.h>
 #include"phone.h"
-#include<string.h>
+#include<stdio.h>
+#include<stdlib.h>
 #include<malloc.h>
+#include<string.h>
+next deleteByName(next head, char* name)
+{
+    next temp = head;
+    next pre = temp;
+    printf("Enter a name to delete : ");
+    scanf("%s", name);
+    while (temp != NULL)
+    {
+        if (strcmp(temp->Name, name) == 0)
+        {
+            if (head->next == NULL)
+            {
+                free( head);
+                head = NULL;
+                return head;
+            }
+            else if (temp == head)
+            {
+                head = temp->next;
+                temp->next = NULL;
+                free(temp);
+                return head;
+            }
+            while (pre->next != temp)
+            {
+                pre = pre->next;
+            }
+            pre->next = temp->next;
+            temp->next = NULL;
+            free(temp);
+            return head;
+        }
+        temp = temp->next;
+    }
+    return head;
 
-void deleteByName(node* curr) {
-	node* tmp;
-	node* tmp1;
-	tmp = (node*)malloc(sizeof(node));
-	tmp1 = (node*)malloc(sizeof(node));
-	char nametmp[10];
-	tmp = head;
-	printf("Enter a name to delete : ");
-	scanf("%s", nametmp);
-	while (tmp->next!=NULL) {
-		if (strcmp(tmp->Name, nametmp) == 0) {
-			tmp = tmp->next;
-			free(tmp);
-			
-		}
-		tmp1 = tmp->next->next;
-		free(tmp->next);
-		tmp->next = tmp1;
-		
-	}
-	if(tmp->next==NULL) {
-			printf("Oops! %s is not in the PhoneBook.", &nametmp);
-		}
-	printf("Deletion is done\n");
 }
+

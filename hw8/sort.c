@@ -1,33 +1,41 @@
-#define _CRT_SECURE_NO_WARNINGS
-#include<stdio.h>
-#include<string.h>
 #include"phone.h"
+#include<stdio.h>
 #include<stdlib.h>
 #include<malloc.h>
+next sortPrint(next head) {
+	next nextnode = head;
+
+	while (nextnode != NULL)
+	{
+		printf("\n");
+		printf("\n%s", nextnode->Name);
+		printf("        ");
+		printf("  %s", nextnode->PhoneNumber);
+		printf("\n");
+		nextnode = nextnode->next;
+	}
 
 
+	next p, temp;
+	p = head;
+	while (p->next != NULL) {
+		if (p->Name > p->next->Name) {
+			temp = p->next;
+			p->next = p->next->next;
+			temp->next = head;
+			head = p = temp;
+		}
+		p = p->next;
+	}
+	return head;
 
-void sortprint(node* curr) {
-   
-    node* tmp;
-    tmp = (node*)malloc(sizeof(node));
-    char *a = tmp->Name;
-    char *b = tmp->next->Name;
-    printArray(tmp);
-   
-
-    while (tmp->next != NULL)
-    {
-        if (*a > *b)  
-        {
-            int rev = *a;
-            *a = *b;
-            *b= rev;
-
-        }
-        tmp = tmp->next;
-    }
-    printArray(tmp)
-    
-
+	while (nextnode != NULL)
+	{
+		printf("\n");
+		printf("\n%s", nextnode->Name);
+		printf("        ");
+		printf("  %s", nextnode->PhoneNumber);
+		printf("\n");
+		nextnode = nextnode->next;
+	}
 }

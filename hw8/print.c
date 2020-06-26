@@ -1,18 +1,19 @@
-#include<stdio.h>
+#define _CRT_SECURE_NO_WARNINGS
 #include"phone.h"
+#include<stdio.h>
+#include<stdlib.h>
+void printArray(next head)
+{
+    next nextnode = head;
 
-void printArray(node *head) { 
-    
-    node* tmp;
-    tmp = (node*)malloc(sizeof(node));
-    tmp=head;
-    
-   for(; tmp != NULL; tmp = tmp->next) {
-        printf("Addr vp:%p\t", tmp);
-        printf("name:%s\t phone:%s\n", tmp->Name,tmp->PhoneNumber);
-        tmp = tmp->next;
+    while (nextnode != NULL)
+    {
         printf("\n");
+        printf("\n%s", nextnode->Name);
+        printf("        ");
+        printf("  %s", nextnode->PhoneNumber);
+        printf("\n");
+        nextnode = nextnode->next;
     }
-
 }
 
